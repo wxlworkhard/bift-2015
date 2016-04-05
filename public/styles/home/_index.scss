@@ -1,0 +1,224 @@
+.home {
+    @include e(wrapper) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+
+        background-image: url($image-path-base + "bg.jpg");
+        background-position-x: 50%;
+        background-position-y: 0;
+        background-repeat: no-repeat;
+
+        @include transition(all 0.5s ease);
+    }
+    
+    @include e(txt_content) {
+        @extend .clearfix;
+        text-align: center;
+        background-color: #fff;
+    }
+
+    @include e(title) {
+        margin-top: 50px;
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    @include e(subtitle) {
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 400;
+        color: $gray-dark;
+    }
+
+    @include e(desc) {
+        // width: 1000px;
+
+        margin: 0 auto 80px;
+        text-align: left;
+        font-size: 16px;
+        color: $gray;
+    }
+}
+
+.home_nav {
+    padding-top: 50px;
+    text-align: center;
+    background-color: #fff;
+    
+    @include e(logo) {
+        > a {
+            font-size: 40px;
+            color: $gray-dark;
+        }
+    }
+
+    @include e(navbar) {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 0;
+
+        > a {
+            display: inline-block;
+            margin-right: 15px;
+            padding: 10px 15px;
+            border-radius: $border-radius-base;
+            font-size: 16px;
+            color: $gray;
+            @include transition(all 0.5s ease);
+
+            &:hover {
+                background-color: $gray-lightest;
+            }
+        }
+
+        > a:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.home_pkg_wrapper {
+    @include perspective(1000px);
+}
+
+.home_pkg {
+    $pkg-animate-time: 3s;
+    $pkg-width: 335px;
+    $pkg-pnl-width: 250px;
+    $pkg-border-width: 1px;
+    $pkg-border-color: $gray-lighter;
+    $pkg-bar-height: 80px;
+    $pkg-dot-width: 14px;
+    $pkg-height: $pkg-pnl-width + $pkg-bar-height + $pkg-dot-width;
+    
+    @extend .clearfix;
+    width: $pkg-width;
+    height: $pkg-height;
+    margin-left: auto;
+    margin-right: auto;
+    @include transition(all $pkg-animate-time ease);
+    @include transform-style-3d;
+    // @include backface-hidden;
+    
+    @include transform-origin(50%, 100%);
+    
+    &.active {    
+        @include rotateX(90deg);
+    }
+    
+    &.reverse {
+        @include transform-origin(50%, 0);
+        > .home_pkg__pnl {
+            margin-top: $pkg-bar-height + $pkg-dot-width;
+            @include transform-origin(50%, 0);
+            
+            &:before {
+                top: -($pkg-bar-height + $pkg-border-width + $pkg-dot-width);
+            }
+
+            &:after {
+                top: -($pkg-bar-height + $pkg-border-width);
+            }
+
+            &:hover {
+                @include translate(0, 10px);
+            }
+        }
+    }
+
+    @include e(pnl) {
+        position: relative;
+        width: $pkg-pnl-width;
+        height: $pkg-pnl-width;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px;
+        border: $pkg-border-width solid $pkg-border-color;
+        border-radius: 50%;
+        @include rgba-bg(rgba(255, 255, 255, 0.15));
+        @include transition(all 0.5s ease);
+
+        &:before {
+            position: absolute;
+            top: $pkg-pnl-width + $pkg-bar-height - $pkg-border-width;
+            left: 50%;
+            width: $pkg-dot-width;
+            height: $pkg-dot-width;
+            margin-left: -($pkg-dot-width / 2);
+            border-radius: 50%;
+            content: "";
+            background-color: $pkg-border-color;
+            // @include rgba-bg(rgba(255, 255, 255, 0.5));
+        }
+
+        &:after {
+            position: absolute;
+            top: $pkg-pnl-width - $pkg-border-width;
+            left: 50%;
+            width: 1px;
+            height: $pkg-bar-height;
+            content: "";
+            background-color: $pkg-border-color;
+        }
+        
+        &:hover {
+            @include translate(0, -10px);
+            
+            > a > img{
+                @include scale(1.2);
+            }
+        }
+        
+        > a > img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+
+            @include transition(all 0.5s ease);
+        }
+    }
+
+    @include e(title) {
+        @extend .text-inline;
+        position: absolute;
+        top: 100px;
+        left: 35px;
+        right: 35px;
+        z-index: 100;
+        margin: 0;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 400;
+        color: $gray-lighter;
+    }
+
+    @include e(enter) {
+        @extend .home_pkg__title;
+        top: 150px;
+        font-size: 14px;
+    }
+}
+
+.home_pkg_line {
+    height: 1px;
+    width: 100%;
+    background-color: $gray-lighter;
+}
+
+.home_tips {
+    line-height: 30px;
+    // text-align: right;
+    color: $gray;
+    background-color: $gray-lightest;
+
+    a {
+        color: $gray-light;
+        text-decoration: underline;
+    }
+}

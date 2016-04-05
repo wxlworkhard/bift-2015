@@ -1,0 +1,71 @@
+//
+// Buttons
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+.btn {
+    display: inline-block;
+    height: $btn-height-base;
+    margin-bottom: 0; // For input.btn
+    border: 1px solid transparent;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    font-weight: $btn-font-weight;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    cursor: pointer;
+    @include button-size(0px, $btn-padding-horizontal, $btn-font-size, $btn-height-base, $btn-border-radius);
+    @include user-select(none);
+
+    &:active,
+    &.active {
+        outline: 0;
+        background-image: none;
+    }
+
+    &.disabled,
+    &[disabled] {
+        cursor: not-allowed;
+        pointer-events: none; // Future-proof disabling of clicks
+    }
+}
+
+.btn-default {
+    @include button-variant($btn-default-color, $btn-default-bg, $btn-default-border, $btn-default-hover-bg, $btn-default-hover-border);
+}
+
+.btn-primary {
+    @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $btn-primary-hover-bg, $btn-primary-hover-border);
+}
+
+.btn-info {
+    @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border, $btn-info-hover-bg, $btn-info-hover-border);
+}
+
+.btn-gray {
+    @include button-variant($btn-gray-color, $btn-gray-bg, $btn-gray-border, $btn-gray-bg, $btn-gray-border);
+}
+
+.btn-gray-sm {
+    @include button-size(0px, 15px, 12px, 30px, $btn-border-radius);
+}
+
+.btn-sm {
+    @include button-size(0px, $btn-padding-horizontal-sm, $btn-font-size-sm, $btn-height-sm, $btn-border-radius);
+}
+.btn-lg {
+    @include button-size(0px, $btn-padding-horizontal-lg, $btn-font-size-lg, $btn-height-lg, $btn-border-radius);
+}
+
+// 获取验证码 btn
+.captcha_btn {
+    @extend .btn;
+    @extend .btn-info;
+    @extend .btn-sm;
+    width: 100%;
+    height: $input-height-base;
+    padding: 0;
+    line-height: $input-height-base;
+}

@@ -1,0 +1,130 @@
+//
+// Navs
+// --------------------------------------------------
+.nav {
+    @extend .clearfix;
+    margin-bottom: 0;
+    padding-left: 0; // Override default ul/ol
+    list-style: none;
+
+    > li {
+        position: relative;
+        display: block;
+
+        > a {
+            position: relative;
+            display: block;
+            
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+
+    > li > a > img {
+        max-width: none;
+    }
+}
+
+//
+// Navbars
+// --------------------------------------------------
+.navbar {
+    @extend .clearfix;
+    position: relative;
+    min-height: 20px; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
+    border-bottom: 1px solid $gray-lighter;
+    border-radius: 0;
+    background-color: #fff;
+}
+
+// Fix the top/bottom navbars when screen real estate supports it
+.navbar-fixed-top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $zindex-navbar;
+}
+
+.navbar-left {
+    float: left !important;
+}
+
+.navbar-right {
+    float: right !important;
+    > li > a:hover {
+        border-bottom-color: transparent;
+    }
+}
+
+// Navbar heading
+.navbar-header {
+    @extend .clearfix;
+    float: left;
+}
+
+// Brand/project name
+.navbar-brand {
+    float: left;
+    margin-right: $navbar-margin-horizontal;
+    padding: $navbar-padding-vertical $navbar-padding-horizontal;
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: $gray-base;
+    
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+
+    > img {
+        display: block;
+    }
+}
+
+.navbar-nav {
+    float: left;
+    margin: 0;
+  
+    &.navbar-right:last-child {
+        margin-right: -$navbar-padding-horizontal;
+    }
+
+    > li {
+        float: left;
+
+        > a {
+            margin: 0 $navbar-margin-horizontal;
+            padding: $navbar-padding-vertical 0;
+            border-bottom: 2px solid transparent;
+            line-height: $line-height-computed;
+            text-decoration: none;
+            font-size: $font-size-large;
+            color: $gray;
+
+            &:hover,
+            &:active {
+                color: $brand-primary;
+                border-bottom-color: $brand-primary;
+            }
+        }
+    }
+    
+    > .active > a {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            color: $brand-primary;
+            border-bottom-color: $brand-primary;
+        }
+    }
+
+    .dropdown-menu {
+        top: 78px;
+    }
+}
