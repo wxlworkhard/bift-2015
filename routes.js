@@ -9,4 +9,12 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/package/common', function (req, res) {
+    res.render('package', {
+        pageInfo: {
+            id: 'pkg-common'
+        }
+    });
+});
+
 module.exports = router;

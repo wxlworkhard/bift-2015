@@ -1,0 +1,54 @@
+.pkg {
+    background-color: #999;
+
+}
+
+
+.pkg_menu_pnl {
+    $panel-width: 150px;
+    $panel-height: 100px;
+    $panel-bg: rgba(255, 255, 255, 0.5);
+    $arrow-tb: 70px;
+    $arrow-lr: 75px;
+    $time: 0.5s;
+    
+    position: relative;
+    width: $panel-width;
+    height: $panel-height;
+    margin: $arrow-tb auto $arrow-tb;
+    @include rgba-bg($panel-bg);
+    @include transition(all $time ease);
+
+    &:before {
+        position: absolute;
+        top: -$arrow-tb;
+        bottom: auto;
+        width: $panel-width;
+        border-bottom: $arrow-tb solid $panel-bg;
+        border-left: $arrow-lr solid transparent;
+        border-right: $arrow-lr solid transparent;
+        content: "";
+    }
+
+    &:after {
+        @extend .pkg_menu_pnl:before;
+        top: auto;
+        bottom: -$arrow-tb;
+        border-top: $arrow-tb solid $panel-bg;
+        border-bottom: 0;
+    }
+    
+    &.active {
+        @include transform(translate(-300px, 0) skew(40deg, 0));
+        @include opacity(0);
+    }
+
+    @include e(img) {
+        display: block;
+        width: $panel-height;
+        height: $panel-height;
+        margin: 0 auto;
+        border: 1px solid $gray-lightest;
+        border-radius: 50%;
+    }
+}

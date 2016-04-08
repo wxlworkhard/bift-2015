@@ -35,7 +35,7 @@
           transition: transform $transition;
 }
 
-// perspective
+// perspective 透视
 @mixin perspective($perspective) {
   -webkit-perspective: $perspective;
      -moz-perspective: $perspective;
@@ -44,14 +44,6 @@
           perspective: $perspective;
 }
 
-// backface
-@mixin backface-hidden {
-  -webkit-backface-visibility: hidden;
-     -moz-backface-visibility: hidden;
-      -ms-backface-visibility: hidden;
-       -o-backface-visibility: hidden;
-          backface-visibility: hidden;
-}
 
 // Transformations
 @mixin transform-style-3d {
@@ -64,9 +56,17 @@
 
 @mixin transform-origin($x, $y) {
   -webkit-transform-origin: $x $y;
-      -ms-transform-origin: $x $y; // IE9 only
+      -ms-transform-origin: $x $y;
        -o-transform-origin: $x $y;
           transform-origin: $x $y;
+}
+
+@mixin transform($transform...) {
+  -webkit-transform: $transform;
+      -moz-transform: $transform;
+      -ms-transform: $transform;
+       -o-transform: $transform;
+          transform: $transform;
 }
 
 @mixin scale($ratio...) {
