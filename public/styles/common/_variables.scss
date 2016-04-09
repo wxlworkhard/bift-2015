@@ -74,8 +74,8 @@ $container-main:                    1100px !default;
 //== Navs
 // $navbar-height:                     60px !default;
 $navbar-border-radius:              $border-radius-base !default;
-$navbar-margin-horizontal:          15px !default;
-$navbar-padding-horizontal:         0 !default;
+$navbar-margin-horizontal:          0px !default;
+$navbar-padding-horizontal:         15px !default;
 $navbar-padding-vertical:           20px !default;
 $navbar-bg:                         #fff !default;
 $navbar-font-size:                  16px !default;
@@ -103,7 +103,13 @@ $btn-font-weight:                   normal !default;
 //== Tables
 
 //== Forms
-
+$input-bg:                      #fff !default;
+$input-color:                   #444 !default;
+$input-color-placeholder:       $gray-light !default;
+$input-border:                  $gray-lighter !default;
+$input-border-focus:            $gray-lighter !default;
+$input-border-radius:           4px !default;
+$input-height-base:             34px !default;
 
 //== Alert
 

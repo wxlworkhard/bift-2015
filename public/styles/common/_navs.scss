@@ -33,8 +33,6 @@
 .navbar {
     @extend .clearfix;
     position: relative;
-    min-height: 20px; // Ensure a navbar always shows (e.g., without a .navbar-brand in collapsed mode)
-    border-bottom: 1px solid $gray-lighter;
     border-radius: 0;
     background-color: #fff;
 }
@@ -72,59 +70,53 @@
     padding: $navbar-padding-vertical $navbar-padding-horizontal;
     line-height: 20px;
     font-size: 20px;
-    font-weight: 700;
-    color: $gray-base;
+    color: $brand-primary;
     
-
     &:hover,
     &:focus {
         text-decoration: none;
-    }
-
-    > img {
-        display: block;
     }
 }
 
 .navbar-nav {
     float: left;
     margin: 0;
-  
-    &.navbar-right:last-child {
-        margin-right: -$navbar-padding-horizontal;
-    }
 
     > li {
         float: left;
-
-        > a {
-            margin: 0 $navbar-margin-horizontal;
-            padding: $navbar-padding-vertical 0;
-            border-bottom: 2px solid transparent;
-            line-height: $line-height-computed;
-            text-decoration: none;
-            font-size: $font-size-large;
-            color: $gray;
-
-            &:hover,
-            &:active {
-                color: $brand-primary;
-                border-bottom-color: $brand-primary;
-            }
+        
+        &:hover {
+            background-color: $gray-lightest;
         }
-    }
-    
-    > .active > a {
-        &,
-        &:hover,
-        &:active,
-        &:focus {
+        
+        &:hover > a {
             color: $brand-primary;
-            border-bottom-color: $brand-primary;
         }
     }
 
-    .dropdown-menu {
-        top: 78px;
+    > li > a {
+        padding: $navbar-padding-vertical $navbar-padding-horizontal;
+        line-height: $line-height-computed;
+        text-decoration: none;
+        font-size: $font-size-large;
+        color: $gray;
+    }
+}
+
+.navbar_search {
+    display: inline-block;
+
+    .form-control-wrapper {
+        margin-top: 15px;
+        margin-left: 30px;
+    }
+
+    .form-control {
+        padding-right: 30px;
+    }
+
+    .form-control-icon {
+        right: 10px;
+        left: auto;
     }
 }

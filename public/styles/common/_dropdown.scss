@@ -1,58 +1,121 @@
-@include b(dropdown) {
+.dropdown {
     position: relative;
     
     &.open {
-        .dropdown-menu {
+        .dropdown__menu {
             display: block;
         }
     }
 
-    @include m(toggle) {
+    @include e(menu) {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: $zindex-dropdown;
+        display: none;
+        font-size: $font-size-base;
+        text-align: left;
+        background-color: #fff;
+        border: 1px solid $gray-lighter;
+        border-radius: 0 0 $border-radius-base $border-radius-base;
+        overflow: hidden;
+
+        > li > a {
+            display: block;
+            padding: 8px 10px;
+            clear: both;
+            line-height: $line-height-base;
+            white-space: nowrap;
+            color: $brand-primary;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+                color: $gray-base;
+                background-color: $brand-primary;
+                border-bottom-color: $brand-primary;
+            }
+        }
+
+        > li:last-child {
+            > a {
+                border-bottom: none;
+            }
+        }
+    }
+
+    @include e(toggle) {
         &:focus {
             outline: none;
         }
     }
 }
 
-@include b(dropdown-menu) {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    // width: 100px;
-    min-width: 100%;
-    z-index: $zindex-dropdown;
-    display: none;
-    font-size: $font-size-base;
-    text-align: left;
-    background-color: rgba(34, 33, 33, 0.8);
-    border-radius: 0 0 2px 2px;
-    overflow: hidden;
-    
-    // &.pull-right {
-    //     right: 0;
-    //     left: auto;
-    // }
+.multi_menu {
+    width: 600px;
+    min-height: 100px;
+    max-height: 400px;
+    padding: 10px;
+    overflow-y: auto;
 
-    > li > a {
-        display: block;
-        padding: 8px 10px;
-        clear: both;
-        line-height: $line-height-base;
-        white-space: nowrap;
-        color: $brand-primary;
+    @include e(lv1) {
+        > li {
+            position: relative;
+            min-height: 30px;
+            margin-bottom: 5px;
+            padding: 5px 0 5px 120px;
+            border: 1px solid $gray-lighter;
 
-        &:hover,
-        &:focus {
-            text-decoration: none;
+            &:hover {
+                background-color: #fafafa;
+            }
+        }
+
+        > li:last-child {
+            margin-bottom: 0;
+        }
+
+        > li > a {
+            @extend .text-inline;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 110px;
+            text-align: left;
             color: $gray-base;
-            background-color: $brand-primary;
-            border-bottom-color: $brand-primary;
+
+            &:hover {
+                text-decoration: underline;
+                color: $brand-primary;
+            }
         }
     }
 
-    > li:last-child {
-        > a {
-            border-bottom: none;
+    @include e(lv2) {
+        @extend .clearfix;
+
+        > li {
+            float: left;
+            margin-right: 5px;
+            margin-bottom: 3px;
+            padding-left: 5px;
+            border-left: 1px solid $gray-lighter;
+        }
+        
+        > li:last-child {
+            padding-right: 5px;
+            border-right: 1px solid $gray-lighter;
+        }
+
+        > li > a {
+            @extend .text-inline;
+            display: block;
+            max-width: 150px;
+            color: $brand-primary;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }

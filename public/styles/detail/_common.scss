@@ -1,0 +1,46 @@
+.banner {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    
+    &:hover {
+        .banner__img {
+            @include scale(1.2);
+        }
+    }
+
+    @include e(gradient) {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        @include gradient-horizontal-three-colors(#130E0F, #690021, 70%, rgba(119, 0, 38, 0.24));
+    }
+
+    @include e(img) {
+        position: absolute;
+        width: 450px;
+        height: 450px;
+        top: -120px;
+        right: 0;
+        @include transition(all 2s ease);   
+    }
+
+    @include e(desc) {
+        position: absolute;
+        top: 120px;
+        width: 100%;
+        
+        p {
+            width: 450px;
+            margin: 0 auto;
+            font-size: 16px;
+            color: #fff;
+
+            &:first-letter {
+                font-size: 30px;
+            }
+        }
+    }
+}

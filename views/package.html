@@ -1,5 +1,5 @@
 <% include common/prefix.html %>
-<% if (pageInfo.id === 'pkg-common') { %>
-<% include package/common.html %>
-<% } %>
+
+<%- include('package/' + pageInfo.pkgcode + '.html') %>
+
 <% include common/suffix.html %>

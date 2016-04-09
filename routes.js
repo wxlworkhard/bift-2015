@@ -9,12 +9,31 @@ router.get('/', function (req, res) {
     });
 });
 
-router.get('/package/common', function (req, res) {
+router.get('/package/:pkgcode', function (req, res) {
+    var pkgcode = req.params.pkgcode
+    var pageInfo = {};
+    
+    if (pkgcode === '0001') {
+        
+    } else {
+        // 通用主题包首页
+        pageInfo.id = 'pkg-common';
+        pageInfo.pkgcode = 'common';
+    }
+    
     res.render('package', {
-        pageInfo: {
-            id: 'pkg-common'
-        }
+        pageInfo: pageInfo
     });
+});
+
+router.get('/:pkgcode/detail/:type(image|video)', function (req, res) {
+   var type = req.params.type;
+   
+   res.render('detail', {
+        pageInfo: {
+            id: type
+        }
+    }); 
 });
 
 module.exports = router;
