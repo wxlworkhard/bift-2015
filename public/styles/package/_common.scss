@@ -1,29 +1,102 @@
-.pkg {
-    background-color: #999;
+$pkg-menu_pnl-gutter: 10px;
 
+.pkg {
+    // background-color: #999;
+    margin-bottom: 150px;
+    .fixed_wrapper {
+        background-image: url($image-path-pkg + "pkg-common-bg.jpg");
+    }
+
+    @include e(navbar) {
+        position: relative;
+        margin-bottom: 100px;
+        background-color: rgba(255, 255, 255, 0.5);
+        
+        a {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+            color: $gray;
+            background-color: rgba(255, 255, 255, 0.5);
+
+            &:after {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                border-top: 45px solid rgba(255, 255, 255, 0.5);
+                border-left: 50px solid transparent;
+                border-right: 50px solid transparent;
+
+                content: "";
+            }
+        }
+
+        h3 {
+            margin: 0;
+            text-align: center;
+            line-height: 50px;
+            font-weight: 400;
+            color: $gray;
+        }
+    }
 }
 
+.pkg_menu_row {
+    $menu_row-width: 710px;
+    
+    @extend .clearfix;
+    width: $menu_row-width;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:last-child > .pkg_menu_pnl {
+        float: right;
+
+        &:last-child {
+             margin-right: $pkg-menu_pnl-gutter;
+        }
+        &:first-child {
+            margin-right: 0;
+        }
+
+        &:hover {
+            @include translate(0, 20px);
+        }
+    }
+}
 
 .pkg_menu_pnl {
     $panel-width: 150px;
-    $panel-height: 100px;
+    $panel-height: 120px;
     $panel-bg: rgba(255, 255, 255, 0.5);
+    $panel-gutter: 10px;
     $arrow-tb: 70px;
-    $arrow-lr: 75px;
+    $arrow-lr: $panel-width / 2;
     $time: 0.5s;
     
     position: relative;
+    float: left;
+    display: inline-block;
     width: $panel-width;
     height: $panel-height;
-    margin: $arrow-tb auto $arrow-tb;
+    // margin: $arrow-tb $panel-gutter $arrow-tb;
+    margin-top: $arrow-tb + $panel-gutter;
+    margin-right: $panel-gutter;
     @include rgba-bg($panel-bg);
     @include transition(all $time ease);
+    
+    &:last-child {
+        margin-right: 0;
+    }
 
     &:before {
         position: absolute;
         top: -$arrow-tb;
         bottom: auto;
-        width: $panel-width;
         border-bottom: $arrow-tb solid $panel-bg;
         border-left: $arrow-lr solid transparent;
         border-right: $arrow-lr solid transparent;
@@ -38,8 +111,12 @@
         border-bottom: 0;
     }
     
+    &:hover {
+        @include translate(0, -20px);
+    }
+
     &.active {
-        @include transform(translate(-300px, 0) skew(40deg, 0));
+        @include transform(translate(-300px, 0) skew(40deg, 0) scale(0.8));
         @include opacity(0);
     }
 
@@ -50,5 +127,28 @@
         margin: 0 auto;
         border: 1px solid $gray-lightest;
         border-radius: 50%;
+    }
+    @include e(title) {
+        @extend .text-inline;
+        position: absolute;
+        width: 100%;
+        margin-top: 45px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        color: #fff;
+    }
+
+    @include e(enter) {
+        @extend .pkg_menu_pnl__title;
+        top: 70px;
+        margin: 0;
+        font-size: 12px;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }
